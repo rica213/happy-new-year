@@ -1,0 +1,138 @@
+@keyframes flicker {
+  0% {
+    opacity: 0.5;
+    text-shadow: 2px 2px 10px white;
+  }
+  100% {
+    opacity: 1;
+    text-shadow: 20px 2px 20px #03011f;
+  }
+}
+
+@keyframes fadein {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    transform: translate(-.75rem);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeout {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+
+/* reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: calc((15px + 0.390625vw) * 3.125);
+}
+
+body {
+  height: 100vh;
+  overflow-y: hidden;
+  position: relative;
+  font-family: "Fira Sans", sans-serif;
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(5, 5, 5, 1) 35%
+  );
+}
+
+main {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.sentence {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  height: auto;
+  text-transform: uppercase;
+}
+
+.sentence__word {
+  display: flex;
+  height: 100%;
+  margin-right: 0.75rem;
+}
+
+.sentence__letter {
+  background: #484848;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: #fff;
+  -webkit-text-stroke-width: 1px;
+  text-shadow: 2px 2px 10px #fff;
+  transition: all 0.5s ease-in-out;
+  text-align: center;
+  letter-spacing: 0.2em;
+}
+
+.sentence__letter:hover {
+  color: #fff;
+  animation: flicker 0.5s ease-in-out infinite alternate;
+}
+
+.sentence__letter.h,
+.sentence__letter.n,
+.sentence__letter.y,
+.sentence__word_year .sentence__letter {
+  background: linear-gradient(
+    to right,
+    red,
+    orange,
+    yellow,
+    green,
+    blue,
+    indigo,
+    violet
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: #fff;
+  -webkit-text-stroke-width: 1px;
+  color: #fff;
+  text-shadow: 0 0 10px #fff, 0 0 80px #fff, 0 0 40px #fff;
+  transition: all 0.5s ease-in-out;
+}
+
+.sentence__word_year .sentence__letter {
+  animation: flicker 0.5s ease-in-out infinite alternate;
+}
+
+.sentence__word_year .sentence__letter.two {
+  opacity: 0;
+  animation: fadeout 3s ease-in-out 1;
+}
+
+.sentence__word_year .sentence__letter.three {
+  background: #484848;
+  -webkit-background-clip: text;
+  background-clip: text;
+  transform: translateX(-.75rem);
+  animation: fadein 2s linear 1 normal forwards;
+}
